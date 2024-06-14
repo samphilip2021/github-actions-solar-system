@@ -36,3 +36,24 @@ jobs:
           with:
             name: Mocha-Test-Result
             path: test-results.xml
+    code-coverage:
+        name: code-coverage
+        id: code-coverage
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout Repository
+            uses: actions/checkout@v4
+          - name: set up node  
+            uses: actions/setup-node@v3
+            with:
+             node-version: 18 
+          - name: install nodejs
+            run: npm install
+          - name: npm coverage
+            continue-on-error: true
+            run: npm run coverage
+            config
+          - name: Code-Coverage-Result
+            path: coverage
+            retention-days: 5
+
